@@ -32,44 +32,38 @@
 
 
 var accordionFactory = function (accordionGroup) {
-
-    console.log(accordionGroup.querySelectorAll('.accordion'))
     var accordionGroupElements = accordionGroup.querySelectorAll('.accordion');
 
     var init = function () {
         attachEvents();
     }
-    var toggle = function (currentAccordion){
-                for (var j = 0; j < accordion.length; j++) {
-            if (currentAccordion != accordion[j]) {
-                accordion[j].classList.remove('is-open');
-            }
-            
-        currentAccordion.classList.toggle('is-open');
 
+    var toggle = function (currentAccordion) {
+        for (var j = 0; j < accordionGroupElements.length; j++) {
+            if (currentAccordion != accordionGroupElements[j]) {
+                accordionGroupElements[j].classList.remove('is-open');
+            }
+        }
+
+        currentAccordion.classList.toggle('is-open');
     }
 
-        var attachEvents = function () {
+    var attachEvents = function () {
         for (var i = 0; i < accordionGroupElements.length; i++) {
-            accordionGroupElements[1].addEventListener('click', function (e) {
-                console.log('acc click', e.currentTarget)
-                toggle(e.currentTarget)
-            })
-
+            accordionGroupElements[i].addEventListener('click', function (e) {
+                toggle(e.currentTarget);
+            });
         }
     }
-
 
     return {
         init: init
     }
-
 };
-
 
 var accGroup = accordionFactory(document.querySelectorAll('.accordion-group')[0])
 accGroup.init();
 
-// var accGroup1 = accordionFactory(document.querySelectorAll('.accordion-group')[0])
-// accGroup1.init();
+var accGroup1 = accordionFactory(document.querySelectorAll('.accordion-group')[1])
+accGroup1.init();
 
